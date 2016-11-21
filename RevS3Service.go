@@ -1,4 +1,4 @@
-package main
+package RevS3
 
 import (
 	"bytes"
@@ -71,12 +71,8 @@ func downloadFile(bucket string, file string) {
 	fileErr := ioutil.WriteFile(file+"_new.mp3", buf.Bytes(), 0644)
 	if fileErr != nil {
 		fmt.Println(err.Error())
-		return
+		return fileErr
 	}
 	fmt.Println("File write success")
-}
-
-func main() {
-	uploadFile("revelation", "./ISurrender.mp3")
-	downloadFile("revelation", "ISurrender")
+	return fileErr
 }
